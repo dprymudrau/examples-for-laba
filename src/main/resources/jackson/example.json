@@ -1,0 +1,18 @@
+{
+  "fName": "Alex",
+  "lName": "Potapov",
+  "age": 17,
+  "dob": "08/17/2004",
+  "cars": [
+    {
+      "model": "BMW",
+      "year": 2005,
+      "number": "1715ck7"
+    },
+    {
+      "model": "KIA",
+      "year": 2010,
+      "number": "2425BC3"
+    }
+  ]
+}
