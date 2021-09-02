@@ -17,7 +17,8 @@ public class User {
     @JsonProperty
     private int age;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/mm/yy")
+    @JsonProperty("dob")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yy")
     private Date dateOfBirth;
 
     @JsonProperty("cars")
@@ -53,5 +54,16 @@ public class User {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", dateOfBirth=" + dateOfBirth +
+                ", cars=" + cars +
+                '}';
     }
 }

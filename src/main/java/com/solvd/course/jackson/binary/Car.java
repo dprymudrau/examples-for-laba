@@ -8,7 +8,7 @@ public class Car {
     private String model;
 
     @JsonProperty
-    private String year;
+    private int year;
 
     @JsonProperty("number")
     private String num;
@@ -21,11 +21,11 @@ public class Car {
         this.model = model;
     }
 
-    public String getYear() {
+    public int getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(int year) {
         this.year = year;
     }
 
@@ -35,5 +35,14 @@ public class Car {
 
     public void setNum(String num) {
         this.num = num;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "model='" + model + '\'' +
+                ", year=" + year +
+                ", num='" + num + '\'' +
+                '}';
     }
 }

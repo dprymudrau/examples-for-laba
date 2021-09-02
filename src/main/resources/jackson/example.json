@@ -1,18 +1,38 @@
-{
-  "fName": "Alex",
-  "lName": "Potapov",
-  "age": 17,
-  "dob": "08/17/2004",
-  "cars": [
-    {
-      "model": "BMW",
-      "year": 2005,
-      "number": "1715ck7"
-    },
-    {
-      "model": "KIA",
-      "year": 2010,
-      "number": "2425BC3"
-    }
-  ]
-}
+[
+  {
+    "fName": "Alex",
+    "lName": "Potapov",
+    "age": 17,
+    "dob": "08/17/2004",
+    "cars": [
+      {
+        "model": "BMW",
+        "year": 2005,
+        "number": "1715ck7"
+      },
+      {
+        "model": "KIA",
+        "year": 2010,
+        "number": "2425BC3"
+      }
+    ]
+  },
+  {
+    "fName": "Denis",
+    "lName": "Andreev",
+    "age": 25,
+    "dob": "09/12/1996",
+    "cars": [
+      {
+        "model": "Volvo",
+        "year": 2020,
+        "number": "1325BA5"
+      },
+      {
+        "model": "KIA",
+        "year": 2010,
+        "number": "2487BK5"
+      }
+    ]
+  }
+]
