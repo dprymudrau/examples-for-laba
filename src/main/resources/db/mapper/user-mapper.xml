@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.course.db.dao.UserDAO">
+    <insert id="insertEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO USER (name, age)
+        VALUES (#{name}, #{age}
+    </insert>
+
+    <select id="getById" resultMap="userResultMap">
+        SELECT u.id, u.name, u.age, c.modelName, c.number FROM Users u
+        LEFT JOIN Cars c ON u.id = c.userId
+        WHERE u.id = 1;
+    </select>
+
+    <resultMap id="userResultMap" type="com.solvd.course.db.binary.User" autoMapping="false">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="age" property="age"/>
+        <collection property="cars" ofType="com.solvd.course.db.binary.Car" javaType="ArrayList" >
+            <result column="modelName" property="modelName"/>
+            <result column="number" property="number"/>
+        </collection>
+    </resultMap>
+
+
+</mapper>
