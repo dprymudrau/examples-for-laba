@@ -2,20 +2,12 @@ package com.solvd.course.db.binary;
 
 import java.util.Objects;
 
-public class Order {
-    private int id;
+public class Order extends BaseEntity {
+
     private double price;
     private String carServiceName;
     private String userName;
     private String carModelName;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public double getPrice() {
         return price;
@@ -54,18 +46,18 @@ public class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return id == order.id && Double.compare(order.price, price) == 0 && Objects.equals(carServiceName, order.carServiceName) && Objects.equals(userName, order.userName) && Objects.equals(carModelName, order.carModelName);
+        return getId() == order.getId() && Double.compare(order.price, price) == 0 && Objects.equals(carServiceName, order.carServiceName) && Objects.equals(userName, order.userName) && Objects.equals(carModelName, order.carModelName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, price, carServiceName, userName, carModelName);
+        return Objects.hash(getId(), price, carServiceName, userName, carModelName);
     }
 
     @Override
     public String toString() {
         return "Order{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", price=" + price +
                 ", carServiceName='" + carServiceName + '\'' +
                 ", userName='" + userName + '\'' +

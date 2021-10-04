@@ -2,17 +2,9 @@ package com.solvd.course.db.binary;
 
 import java.util.Objects;
 
-public class CarService {
-    private int id;
+public class CarRepairService extends BaseEntity {
+
     private String name;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -26,19 +18,19 @@ public class CarService {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CarService that = (CarService) o;
-        return id == that.id && Objects.equals(name, that.name);
+        CarRepairService that = (CarRepairService) o;
+        return getId() == that.getId() && Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(getId(), name);
     }
 
     @Override
     public String toString() {
         return "CarService{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", name='" + name + '\'' +
                 '}';
     }

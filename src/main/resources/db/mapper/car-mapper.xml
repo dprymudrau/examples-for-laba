@@ -2,13 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd">
 <mapper namespace="com.solvd.course.db.dao.CarDAO">
-    <select id="getById" resultMap="">
-        SELECT id, modelName, number, userId FROM Cars WHERE id = #{id}
+
+    <sql id="body">
+        c.id as car_id,
+        c.model_name as car_model_name,
+        c.number as car_number,
+        c.user_id as car_user_id
+    </sql>
+
+    <select id="getById" resultMap="carResultMap">
+        SELECT
+        <include refid="body"/>
+        FROM
+            Cars c
+        WHERE id = #{id}
     </select>
-    <resultMap id="carResultMap" type="com.solvd.course.db.binary.Car">
-        <id column="id" property="id"/>
-        <result column="modelName" property="modelName"/>
-        <result column="number" property="number"/>
-        <result column="userId" property="userId"/>
+
+    <resultMap id="carResultMap" type="com.solvd.course.db.binary.Car" autoMapping="false">
+        <id column="car_id" property="id"/>
+        <result column="car_model_name" property="modelName"/>
+        <result column="car_number" property="number"/>
+        <result column="car_user_id" property="userId"/>
     </resultMap>
 </mapper>

@@ -6,7 +6,9 @@
     <properties resource="db.properties"/>
     <environments default="development">
         <environment id="development">
-            <transactionManager type="JDBC"/>
+            <transactionManager type="JDBC">
+                <property name="defaultReadOnly" value="false"/>
+            </transactionManager>
             <dataSource type="POOLED">
                 <property name="driver" value="${db.driver}"/>
                 <property name="url" value="${db.url}"/>
@@ -17,6 +19,6 @@
     </environments>
     <mappers>
         <mapper resource="db/mapper/user-mapper.xml"/>
-<!--        <mapper resource="db/mapper/car-mapper.xml"/>-->
+        <mapper resource="db/mapper/car-mapper.xml"/>
     </mappers>
 </configuration>

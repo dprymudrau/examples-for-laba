@@ -2,26 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd">
 <mapper namespace="com.solvd.course.db.dao.UserDAO">
-    <insert id="insertEntity" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO USER (name, age)
-        VALUES (#{name}, #{age}
+
+    <insert id="create" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO USERS (name, age)
+        VALUES (#{name}, #{age})
     </insert>
 
     <select id="getById" resultMap="userResultMap">
-        SELECT u.id, u.name, u.age, c.modelName, c.number FROM Users u
-        LEFT JOIN Cars c ON u.id = c.userId
-        WHERE u.id = 1;
+        SELECT
+            u.id as user_id,
+            u.name as user_name,
+            u.age as user_age,
+            <include refid="com.solvd.course.db.dao.CarDAO.body"/>
+        FROM
+            Users u
+        LEFT JOIN
+            Cars c
+        ON
+            u.id = c.user_id
+        WHERE u.id = #{id};
     </select>
 
     <resultMap id="userResultMap" type="com.solvd.course.db.binary.User" autoMapping="false">
-        <id column="id" property="id"/>
-        <result column="name" property="name"/>
-        <result column="age" property="age"/>
-        <collection property="cars" ofType="com.solvd.course.db.binary.Car" javaType="ArrayList" >
-            <result column="modelName" property="modelName"/>
-            <result column="number" property="number"/>
-        </collection>
+        <id column="user_id" property="id"/>
+        <result column="user_name" property="name"/>
+        <result column="user_age" property="age"/>
+        <collection property="cars" resultMap="com.solvd.course.db.dao.CarDAO.carResultMap"/>
     </resultMap>
-
 
 </mapper>
