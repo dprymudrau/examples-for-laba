@@ -17,7 +17,7 @@ public class ApiTest implements IAbstractTest {
         GetWeatherByCityMethod getWeatherByCityMethod = new GetWeatherByCityMethod(CITY_MINSK);
         getWeatherByCityMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
         Response response = getWeatherByCityMethod.callAPI();
-        getWeatherByCityMethod.validateResponseAgainstSchema("api/_get/rs.schema");
         LOGGER.info(response.body().prettyPrint());
+        getWeatherByCityMethod.validateResponseAgainstSchema("api/_get/rs.schema");
     }
 }
