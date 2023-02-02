@@ -1,11 +1,13 @@
 package com.solvd.course.utils;
 
-import com.qaprosoft.carina.core.foundation.commons.SpecialKeywords;
-import com.qaprosoft.carina.core.foundation.crypto.CryptoTool;
-import com.qaprosoft.carina.core.foundation.crypto.SecretKeyManager;
+import com.zebrunner.carina.crypto.Algorithm;
+import com.zebrunner.carina.crypto.CryptoTool;
+import com.zebrunner.carina.crypto.CryptoToolBuilder;
+import com.zebrunner.carina.crypto.SecretKeyManager;
+import com.zebrunner.carina.utils.commons.SpecialKeywords;
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,11 +18,15 @@ public class CryptoUtil {
     private final static Logger LOGGER = LogManager.getLogger(CryptoUtil.class);
     private final static String KEY_FILE_PATH = "src/main/resources/crypto.key";
     private static String cryptoKey = getKeyFromFile(KEY_FILE_PATH);
-    private static CryptoTool cryptoTool = new CryptoTool(SpecialKeywords.CRYPTO_ALGORITHM, SpecialKeywords.CRYPTO_KEY_TYPE, SecretKeyManager.getKey(cryptoKey, SpecialKeywords.CRYPTO_KEY_TYPE));
+    private static CryptoTool cryptoTool = CryptoToolBuilder
+            .builder()
+            .chooseAlgorithm(Algorithm.AES_ECB_PKCS5_PADDING)
+            .setKey(cryptoKey)
+            .build();
     private static Pattern cryptoPattern = Pattern.compile(SpecialKeywords.CRYPT);
 
     public static String decrypt(String str) {
-        return cryptoTool.decryptByPattern(str, cryptoPattern);
+        return cryptoTool.decrypt(str, cryptoPattern.pattern());
     }
 
     public static String encrypt(String str) {
