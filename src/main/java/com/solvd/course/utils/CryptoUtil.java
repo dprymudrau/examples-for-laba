@@ -23,10 +23,8 @@ public class CryptoUtil {
             .chooseAlgorithm(Algorithm.AES_ECB_PKCS5_PADDING)
             .setKey(cryptoKey)
             .build();
-    private static Pattern cryptoPattern = Pattern.compile(SpecialKeywords.CRYPT);
-
     public static String decrypt(String str) {
-        return cryptoTool.decrypt(str, cryptoPattern.pattern());
+        return cryptoTool.decrypt(str);
     }
 
     public static String encrypt(String str) {
